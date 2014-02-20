@@ -40,15 +40,17 @@ public class PercolationStats {
         {
             p = new Percolation(N);
             results[num] = performExperiment()*1./(N*N);
-            StdOut.println(results[num]*1./(N*N));
         }
     }
 
     public double mean()
     // sample mean of percolation threshold
     {
+        Double res = 0.;
+        for (Double i: results)
+            res += i;
 
-        return 0;
+        return res/results.length;
     }
 
     public double stddev()
@@ -70,6 +72,9 @@ public class PercolationStats {
 
     public static void main(String[] args)   // test client, described below
     {
-        PercolationStats a = new PercolationStats(20,10);
+        int N = StdIn.readInt();
+        int T = StdIn.readInt();
+        PercolationStats a = new PercolationStats(N,T);
+        StdOut.print(a.mean());
     }
 }
