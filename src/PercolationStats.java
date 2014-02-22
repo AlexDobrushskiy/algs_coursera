@@ -56,7 +56,11 @@ public class PercolationStats {
     public double stddev()
     // sample standard deviation of percolation threshold
     {
-        return 0;
+        double mn = mean();
+        Double res = 0.;
+        for (Double i: results)
+            res += (i - mn)*(i - mn);
+        return res/(results.length-1);
     }
 
     public double confidenceLo()
@@ -75,6 +79,7 @@ public class PercolationStats {
         int N = StdIn.readInt();
         int T = StdIn.readInt();
         PercolationStats a = new PercolationStats(N,T);
-        StdOut.print(a.mean());
+        StdOut.println(a.mean());
+        StdOut.print(a.stddev());
     }
 }
