@@ -46,32 +46,24 @@ public class PercolationStats {
     public double mean()
     // sample mean of percolation threshold
     {
-        Double res = 0.;
-        for (Double i: results)
-            res += i;
-
-        return res/results.length;
+        return StdStats.mean(results);
     }
 
     public double stddev()
     // sample standard deviation of percolation threshold
     {
-        double mn = mean();
-        Double res = 0.;
-        for (Double i: results)
-            res += (i - mn)*(i - mn);
-        return res/(results.length-1);
+        return StdStats.stddev(results);
     }
 
     public double confidenceLo()
     // returns lower bound of the 95% confidence interval
     {
-        return 0;
+        return mean() - 1.96*stddev()/Math.sqrt(results.length);
     }
 
     public double confidenceHi()             // returns upper bound of the 95% confidence interval
     {
-        return 0;
+        return mean() + 1.96*stddev()/Math.sqrt(results.length);
     }
 
     public static void main(String[] args)   // test client, described below
@@ -79,7 +71,13 @@ public class PercolationStats {
         int N = StdIn.readInt();
         int T = StdIn.readInt();
         PercolationStats a = new PercolationStats(N,T);
+        StdOut.print("mean                    = ");
         StdOut.println(a.mean());
-        StdOut.print(a.stddev());
+        StdOut.print("stddev                  = ");
+        StdOut.println(a.stddev());
+        StdOut.print("95% confidence interval = ");
+        StdOut.print(a.confidenceLo());
+        StdOut.print(", ");
+        StdOut.print(a.confidenceHi());
     }
 }
