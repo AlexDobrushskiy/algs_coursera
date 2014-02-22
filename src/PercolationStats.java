@@ -6,15 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 public class PercolationStats {
-    Percolation p;
-    double results[];
+    private Percolation p;
+    private double results[];
+    private int perc_size;
 
     private void openRandomCell()
     {
         int i,j;
         do {
-            i = StdRandom.uniform(1, p.size+1);
-            j = StdRandom.uniform(1, p.size+1);
+            i = StdRandom.uniform(1, perc_size+1);
+            j = StdRandom.uniform(1, perc_size+1);
         }
         while (p.isOpen(i, j));
         p.open(i,j);
@@ -35,7 +36,7 @@ public class PercolationStats {
     // perform T independent computational experiments on an N-by-N grid
     {
         results = new double[T];
-
+        perc_size = N;
         for (int num=0;num<T;++num)
         {
             p = new Percolation(N);

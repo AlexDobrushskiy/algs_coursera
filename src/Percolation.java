@@ -7,10 +7,10 @@
  */
 public class Percolation {
 
-    int grid[][];
+    private int grid[][];
     // create N-by-N grid, with all sites blocked
-    int size;
-    WeightedQuickUnionUF field;
+    private int size;
+    private WeightedQuickUnionUF field;
 
     private int getID(int i, int j)
      // assume 'i' is row, 'j' is column, first ID is 0
