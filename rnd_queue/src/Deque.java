@@ -111,8 +111,6 @@ public class Deque<Item> implements Iterable<Item>{
     {
         return new DequeIterator();
     }
-    public boolean hasNext(){}
-    public Item next(){}
     public static void main(String[] args)   // unit testing
     {
 
